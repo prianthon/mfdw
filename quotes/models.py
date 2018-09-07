@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-STATUS_CHOICE = (
+STATUS_CHOICES = (
     ('NEW', 'New Site'),
     ('EX', 'Existing Site'),
 )
