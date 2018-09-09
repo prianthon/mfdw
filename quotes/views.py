@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.views.generic import ListView
 
 from .models import Quote
 from .forms import QuoteForm
 from pages.models import Page
+
+class QuoteList(ListView):
+    model = Quote
+    context_object_name = 'all_quotes'
 
 def quote_req(request):
     submitted = False
@@ -11,7 +16,7 @@ def quote_req(request):
         form = QuoteForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponselRedirect('/quote?submitted=True')
+            return HttpResponseRedirect('/quote?submitted=True')
     else:
         form = QuoteForm()
         if 'submitted' in request.GET:
